@@ -1,2 +1,4 @@
 # NodeJs
-All NodeJs project
+All NodeJs practice
+From Node.js in Action
+Author Mike Cantelon
