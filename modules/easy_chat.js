@@ -39,6 +39,11 @@ chatServer.on('connection', function (client) {
         channel.emit('broadcast', id, data);
     });
 
+    // channel.on('join', function(id, client){
+    //     var welcome = 'Welcome!\n' + 'Guests online: ' + this.listeners('broadcast').length;
+    //     client.write
+    // });
+
     client.on('close', function () {
         channel.emit('leave', id);
     });
