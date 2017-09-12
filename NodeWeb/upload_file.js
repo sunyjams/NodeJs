@@ -1,5 +1,11 @@
 var http = require('http');
 var formidable = require('formidable');
+var fs = require('fs');
+
+var options = {
+    key: fs.readFileSync('./key.pem'),
+    cert:fs.readFileSync('./key-cert.pem')
+};
 
 var server = http.createServer(function(req, res) {
     switch (req.method) {
