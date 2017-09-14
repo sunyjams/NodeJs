@@ -19,7 +19,7 @@ var server = http.createServer(function(req, res) {
                     work.add(db, req, res);
                     break;
                 case '/archive':
-                    work.add(db, req, res);
+                    work.archive(db, req, res);
                     break;
                 case '/delete':
                     work.delete(db, req, res);
@@ -32,7 +32,7 @@ var server = http.createServer(function(req, res) {
                     work.show(db, res);
                     break;
                 case '/archived':
-                    work.showArichived(db, res);
+                    work.showArchived(db, res);
             }
             break;
     }
