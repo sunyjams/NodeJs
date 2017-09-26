@@ -1,0 +1,12 @@
+<<!DOCTYPE html>
+<head>
+    <title>List Drink</title>
+</head>
+<body>
+    <ul>
+            <% drinks.forEach(function(drink) { %>
+                <li><%= drink.name %> - <%= drink.drunkness %></li>
+            <% }); %>
+    </ul>
+</body>
+</html>
