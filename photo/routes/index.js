@@ -6,6 +6,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/reg', function(req, res) {
+  res.render('reg', {
+    title:'用户注册'
+  });
+});
+
 exports.index = function(req, res) {
   res.render('index', {title:'Express'});
 };

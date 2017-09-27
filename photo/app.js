@@ -5,6 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var partials = require('express-partials');
+var connect = require('connect');
+var mongoStore = require('connect-mongo');
+var settings = require('./settings');
+var expressSession = require('express-session');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -24,6 +28,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressSession({
+  secret:settings.cookieSecret,
+  store:new mongoStore({
+    db:settings.db
+  })
+}));
 
 app.use('/', index);
 app.use('/users', users);
