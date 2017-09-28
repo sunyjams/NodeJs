@@ -8,6 +8,7 @@ var partials = require('express-partials');
 var expressSession = require('express-session');
 var MongoStore = require('connect-mongo')(expressSession);
 var settings = require('./settings');
+var flash = require('connect-flash');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -20,7 +21,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(partials());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -37,6 +38,39 @@ app.use(expressSession({
   })
 }));
 app.use(express.static(__dirname + '/public'));
+app.use(flash());
+
+app.use(function(req, res, next) {
+  res.locals.user = req.session.user;
+
+  var err = req.flash('error');
+  var success = req.flash('success');
+
+  res.locals.error = err.length ? err : null;
+  res.locals.success = success.length ? success : null;
+
+  next();
+});
+// app.dynamicHelpers({
+//   user: function(req, res) {
+//     return req.session.user;
+//   },
+//   error: function(req, res) {
+//     var err = req.flash('error');
+//     if (err.length)
+//       return err;
+//     else
+//       return null;
+//     },
+//   success: function(req, res) {
+//     var succ = req.flash('success');
+//     if (succ.length)
+//       return succ;
+//     else
+//       return null;
+//     },
+//   }
+// );
 
 app.use('/', index);
 app.use('/users', users);
@@ -50,26 +84,8 @@ app.use('/hello', hello);
 // app.get('/login', routes.login);
 // app.post('/login', routes.doLogin);
 // app.get('/loigout', routes.logout);
-app.dynamicHelpers({
-  user:function(req, res) {
-    return req.session.user;
-  },
-  error:function(req, res) {
-    var err = req.flash('error');
-    if(err.length){
-      return err;
-    }else{
-      return null;
-    }
-  },
-  success:function(req, res) {
-    var succ = req.flash('success');
-    if(succ.length)
-      return succ;
-    else
-      return null;
-  },
-});
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
