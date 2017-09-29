@@ -4,4 +4,4 @@ var database = mongodb.Db;
 var conn = mongodb.connection;
 var server = mongodb.Server;
 
-module.exports = new database(settings.db, new server(settings.host, conn.DEFAULT_PORT, {}));
+module.exports = new database(settings.db, new server(settings.host, '27017', {}));

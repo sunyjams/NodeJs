@@ -12,7 +12,6 @@ var flash = require('connect-flash');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var hello = require('./routes/hello');
 
 var app = express();
 
@@ -51,41 +50,9 @@ app.use(function(req, res, next) {
 
   next();
 });
-// app.dynamicHelpers({
-//   user: function(req, res) {
-//     return req.session.user;
-//   },
-//   error: function(req, res) {
-//     var err = req.flash('error');
-//     if (err.length)
-//       return err;
-//     else
-//       return null;
-//     },
-//   success: function(req, res) {
-//     var succ = req.flash('success');
-//     if (succ.length)
-//       return succ;
-//     else
-//       return null;
-//     },
-//   }
-// );
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/hello', hello);
-//routers
-// app.get('/', routes.index);
-// app.get('/u/:user', routes.user);
-// app.post('/post', routes.post);
-// app.get('/reg', routes.reg);
-// app.post('/reg', routes.doReg);
-// app.get('/login', routes.login);
-// app.post('/login', routes.doLogin);
-// app.get('/loigout', routes.logout);
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
