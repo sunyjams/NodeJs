@@ -1,14 +1,14 @@
 # MicroBlog
 
-## MicroBlog with express4.X
+## MicroBlog with express4.x
 
 
 * express 4.15.2
 * node 6.11.2
 * ejs 2.5.6
-* mongodb 2.2.31
+* mongodb 3.4.9
 
-### run common
+### Run
     
     npm install
 
