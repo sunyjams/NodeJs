@@ -5,6 +5,8 @@ import User from '@/components/User'
 
 Vue.use(Router)
 
+const VIP = {template:''}
+
 export default new Router({
   routes: [
     {
@@ -14,7 +16,13 @@ export default new Router({
     },
     {
       path:'/user/:id',
-      component:User
+      component:User,
+      children:[
+        {
+          path:'vip',
+          component:VIP
+        }
+      ]
     }
   ]
 })
